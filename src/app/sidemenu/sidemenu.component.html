@@ -1,0 +1,25 @@
+<ul class="nav navbar-nav ">
+    <li [class]="categorieParent.categorie_fils && categorieParent.categorie_fils.length > 0 ? 'level sub-megamenu':'level'"
+        *ngFor="let categorieParent of categorieGroupeeData; let i = index">
+        <a style="padding-top: 7px; padding-bottom:7px;" class="page-scroll" (click)="getProduitByCategorie(categorieParent)" *ngIf="9>i"><img class="icon-img"
+                src="{{api_url}}storage/{{categorieParent.img}}">{{categorieParent.libelle}}</a>
+        <div class="megamenu mobile-sub-menu" style="width:430px;"
+            *ngIf="categorieParent.categorie_fils && categorieParent.categorie_fils.length > 0">
+            <div class="megamenu-inner-top">
+                <ul class="sub-menu-level1">
+                    <li class="level2" *ngFor="let subCategorie of categorieParent.categorie_fils">
+                        <a (click)="getProduitByCategorie(subCategorie)"><span>{{subCategorie.libelle}}</span></a>
+                        <ul class="sub-menu-level2"
+                            *ngIf="subCategorie.categorie_fils && subCategorie.categorie_fils.length > 0">
+                            <li class="level3" *ngFor="let subCategorie2 of subCategorie.categorie_fils">
+                                <a
+                                    (click)="getProduitByCategorieend(subCategorie2)"><span>■</span>{{subCategorie2.libelle}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+    </li>
+
+</ul>

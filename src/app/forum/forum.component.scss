@@ -1,0 +1,17 @@
+.alert-container {
+    position: fixed;
+    z-index: 10;
+    background-color: #8ef10e;
+    color: white;
+    padding-left: 20px;
+    border-radius: 25px;
+    bottom: 30px;
+    height: 50px;
+    width: 190px;
+    left: 5%;
+    cursor: pointer;
+}
+
+.col {
+    margin: 0 !important;
+}

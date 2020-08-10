@@ -1,0 +1,36 @@
+<div class="cart-box-main">
+    <a (mouseover)="refresh()">
+        <span class="cart-icon-main"> <small class="cart-notification">{{panierData.length}}</small> </span>
+        <div class="my-cart">panier<br>{{montantPanier}} FCFA</div>
+    </a>
+    <div class="cart-dropdown header-link-dropdown" *ngIf="panierData.length==0">
+        <p style="text-align: center;">Votre panier est vide</p>
+    </div>
+    <div class="cart-dropdown header-link-dropdown" *ngIf="panierData.length>0">
+        <ul class="cart-list link-dropdown-list" style="max-height:350px; overflow: scroll;">
+            <li *ngFor="let product of panierData"> <a class="close-cart" (click)="removeProduit(product)"><i
+                        class="fa fa-times-circle"></i></a>
+                <div class="media"> <a class="pull-left"> <img alt="Shopholic"
+                            src="{{api_url}}storage/{{toArray(product.img)[0]}}"></a>
+                    <div class="media-body"> <span><a href="#">{{product.libelle}}</a></span>
+                        <p class="cart-price">{{(product.prix - (product.prix*product.reduction)/100) }}
+                            {{product.symbole}}</p>
+                        <div class="product-qty">
+                            <label>Qty:</label>
+                            <div class="custom-qty">
+                                <input type="text" name="qty" value="{{product.quantite}}" title="Qty" #qte
+                                    class="input-text qty" (keyup)="setQte(product,qte.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <p class="cart-sub-totle"> <span class="pull-left">Montant total</span> <span class="pull-right"><strong
+                    class="price-box">{{montantPanier}} FCFA</strong></span> </p>
+        <div class="clearfix"></div>
+        <div class="mt-20"> <a (click)="showPanier()" class="btn-color btn right-side"
+                style="background-color: teal;">panier</a>
+        </div>
+    </div>
+</div>

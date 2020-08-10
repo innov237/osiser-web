@@ -1,0 +1,46 @@
+<div class="bg-white rounded">
+    <h3>{{sujets?.libelle}}</h3>
+    <div *ngIf="sujets?.data.length == 0" class="bg-faded rounded mb-2 mt-2">
+        <div class="container-fluid p-2">
+            <h3>aucun sujet pour cette categorie</h3>
+        </div>
+    </div>
+    <div *ngIf="message != null" class="alert alert-success mt-2" role="alert">
+        <strong>abonnement!</strong> {{message}}
+      </div>
+    <div *ngIf="sujets?.data.length != 0" class="mt-2">
+        <div class="bg-faded rounded mb-2 bordure" *ngFor="let sujet of sujets?.data" (click)="openSujet(sujet)">
+            <div class="container-fluid p-2">
+                <div class="row">
+                    <div class="col-md-2 col-4 d-flex align-items-center">
+                        {{sujet.titre}}
+                    </div>
+                    <div class="col-md-4 col-4 d-flex align-items-center">
+                        {{sujet.description}}
+                    </div>
+                    <div class="col-md-2 col-4 d-flex align-items-center">
+                        {{sujet.abonner.length}} Abonnés
+                    </div>
+                    <div *ngIf="!passabonnement && currentuser != null" class="col-md-3 col-6 d-flex align-items-center ">
+                        {{(chechAbonne(sujet.abonner))? 'vous éte abonné':'abonne toi ici'}}
+                    </div>
+                    <div *ngIf="currentuser == null" class="col-md-3 col-6 d-flex align-items-center ">
+                        abonne toi ici
+                    </div>
+                    <div *ngIf="passabonnement && currentuser != null" class="col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        
+                        <form class="form-inline col-12">
+                            <select class="form-control  mr-2" id="exampleSelect1" #data>
+                                <option selected>type d'abonnement</option>
+                                <option *ngFor="let typ of types" value={{typ.id}}> {{typ.type}}</option>
+                              </select>
+                          
+                            <button type="button" style="padding: 10px;" (click)="creeAbonnement(data)" class="btn btn-warning">ok</button>
+                          </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

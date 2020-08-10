@@ -1,0 +1,213 @@
+<!-- Bread Crumb STRAT -->
+<div class="banner inner-banner1">
+    <div class="container">
+        <section class="banner-detail center-xs">
+            <h1 class="banner-title">Mon Panier</h1>
+            <div class="bread-crumb right-side float-none-xs">
+                <ul>
+                    <li><a href="index.html"><i class="fa fa-home"></i>Accueil</a>/</li>
+                    <li><span>panier</span></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Bread Crumb END -->
+
+<!-- CONTAIN START -->
+<section class="ptb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cart-item-table commun-table">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produit</th>
+                                    <th>Designation</th>
+                                    <th>Prix</th>
+                                    <th>Quanté</th>
+                                    <th>prix total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of panierData">
+                                    <td>
+                                        <a>
+                                            <div class="product-image">
+                                                <img alt="Shopholic"
+                                                    src="{{api_url}}storage/{{toArray(product.img)[0]}}">
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="product-title">
+                                            <a>{{product.libelle}}</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <div class="base-price price-box">
+                                                    <span class="price">
+                                                        {{(product.prix - (product.prix*product.reduction)/100) }}
+                                                        {{product.symbole}}</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div class="input-box select-dropdown">
+                                            <fieldset>
+                                                <div class="custom-qty">
+                                                    <input type="text" name="qty" value="{{product.quantite}}"
+                                                        title="Qty" #qte class="input-text qty"
+                                                        (keyup)="setQte(product,qte.value)">
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="total-price price-box">
+                                            <span
+                                                class="price">{{qte.value*(product.prix- (product.prix*product.reduction)/100)}}</span>
+                                        </div>
+                                    </td>
+                                    <td (click)="removeProduit(product)">
+                                        <i title="Remove Item From Cart" data-id="100"
+                                            class="fa fa-trash cart-remove-item"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="link" *ngFor="let message of tabverifi">
+                            <li><i class="fa fa-stop"></i> {{message}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-30">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mt-30">
+                        <a routerLink="/" class="btn btn-color">
+                            <span><i class="fa fa-angle-left"></i></span>
+                            Continuer vos achats
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mt-30 right-side float-none-xs" (click)="refresh()">
+                        <a class="btn btn-color">Mise à jour panier</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="mtb-30">
+            <div class="row">
+                <div class="col-md-6 mb-xs-40">
+                    <div class="estimate">
+                        <div class="heading-part mb-20">
+                            <h3 class="sub-heading">Estimation des frais de transports et de la TVA</h3>
+                        </div>
+                        <form class="full">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-box select-dropdown mb-20">
+                                        <fieldset>
+                                            <select id="country_id" class="option-drop">
+                                                <option selected="" value="">Choisissez le pays</option>
+                                                <option value="1" selected>cameroun</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box select-dropdown mb-20">
+                                        <fieldset>
+                                            <select id="state_id" class="option-drop">
+                                                <option selected="" value="1">Sélectionnez Etat / Province</option>
+                                                <option value="2" selected>Centre</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box select-dropdown mb-20">
+                                        <fieldset>
+                                            <select id="city_id" class="option-drop">
+                                                <option selected="" value="1">Ville</option>
+                                                <option value="2" selected>Yaoundé</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cart-total-table commun-table">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Total du panier</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre de ligne</td>
+                                        <td>
+                                            <div class="price-box">
+                                                <span class="price">{{panierData.length}}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>livraison</td>
+                                        <td>
+                                            <div class="price-box">
+                                                <span class="price">0 FCFA</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Montant total</b></td>
+                                        <td>
+                                            <div class="price-box">
+                                                <span class="price"><b>{{montantPanier}}</b></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="mt-30">
+            <div class="row">
+                <div class="col-12">
+                    <div class="right-side float-none-xs" *ngIf="tabverifi?.length != 0">
+                        <a (click)="verifiercommande()" class="btn btn-color">Vérifier la commande
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </a>
+                    </div>
+                    <div class="right-side float-none-xs" *ngIf="tabverifi?.length == 0">
+                        <a (click)="suivant()" class="btn btn-color">Suivant
+                            <span><i class="fa fa-angle-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CONTAINER END -->

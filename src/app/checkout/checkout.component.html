@@ -1,0 +1,272 @@
+<!-- Bread Crumb STRAT -->
+<div class="banner inner-banner1">
+    <div class="container">
+        <section class="banner-detail center-xs">
+            <h1 class="banner-title">Checkout</h1>
+            <div class="bread-crumb right-side float-none-xs">
+                <ul>
+                    <li><a href="index.html"><i class="fa fa-home"></i>Home</a>/</li>
+                    <li><a href="index.html">panier</a>/</li>
+                    <li><span>Adresse de livraison</span></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Bread Crumb END -->
+
+<!-- CONTAIN START -->
+<section class="checkout-section ptb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="checkout-step mb-40">
+                    <ul>
+                        <li class="active">
+                            <a href="checkout.html">
+                                <div class="step">
+                                    <div class="line"></div>
+                                    <div class="circle">1</div>
+                                </div>
+                                <span>livraison</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="order-overview.html">
+                                <div class="step">
+                                    <div class="line"></div>
+                                    <div class="circle">2</div>
+                                </div>
+                                <span>Aperçu de la commande</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="payment.html">
+                                <div class="step">
+                                    <div class="line"></div>
+                                    <div class="circle">3</div>
+                                </div>
+                                <span>Paiement</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="order-complete.html">
+                                <div class="step">
+                                    <div class="line"></div>
+                                    <div class="circle">4</div>
+                                </div>
+                                <span>Commande terminée</span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <div class="line"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="checkout-content" *ngIf="!choiaddress">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading-part align-center">
+                                <h2 class="heading">S'il vous plaît remplir vos détails d'expédition</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-lg-8 col-md-8">
+                            <form action="order-overview.html" [formGroup]="formadresse" class="main-form full">
+                                <div class="row mb-20">
+                                    <div class="col-12 mb-20">
+                                        <div class="heading-part">
+                                            <h3 class="sub-heading">Adresse de livraison</h3>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-box">
+                                            <input type="text" formControlName="noms"  placeholder="Nom complet">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-6">
+                                        <div class="input-box">
+                                            <input type="text" formControlName="telephone" placeholder="Numéro de téléphone ">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="input-box">
+                                            <input type="text" formControlName="telephone2" placeholder="2 eme numéro de téléphone ">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="input-box">
+                                            <input type="text" formControlName="rue" placeholder="Adresse de livraison">
+                                            <span>S'il vous plaît fournir le numéro et la rue.</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                        <div class="input-box">
+                                            <input type="text"  placeholder="Expédition" #localisation>
+                                            <span>Veuillez inclure le point de repère (par exemple: Opposite Bank) en
+                                                tant que service de transporteur peut trouver plus facile de localiser
+                                                votre adresse.</span>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-6">
+                                        <div class="input-box select-dropdown">
+                                            <fieldset>
+                                                <select name="shippingCountryId" formControlName="pays" class="option-drop"
+                                                    id="shippingcountryid">
+                                                    <option value="">Choisissez le pays</option>
+                                                    <option value="Cameroun" selected>Cameroun</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-box select-dropdown">
+                                            <fieldset>
+                                                <select formControlName="ville" name="shippingstateId" #ville class="option-drop"
+                                                    id="shippingstateid">
+                                                    <option value="">Sélectionner une ville</option>
+                                                    <option value="yaounde" selected>yaounde</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-box select-dropdown">
+                                            <fieldset>
+                                                <select formControlName="isDefault" name="shippingstateId" #ville class="option-drop"
+                                                    id="shippingstateid">
+                                                    <option value="">Adresse par défaut</option>
+                                                    <option value="1" selected>Oui</option>
+                                                    <option value="0" selected>Non</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-color right-side"
+                                        (click)="verificationCommande(formadresse)" >Suivant</a>
+
+                                            <a class="btn btn-color left-side"
+                                            (click)="choiAdresse()">Choisir une addresse existente</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="checkout-content" *ngIf="choiaddress">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading-part align-center">
+                            <h2 class="heading">Choisissez une addresse de livraison</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let adresse of defauladresse">
+                        <div class="cart-total-table address-box commun-table">
+                            <div class="table-responsive">
+                                <table class="table" >
+                                    <thead>
+                                        <tr>
+                                            <th>Adresse par defaut 
+                                                    <div>
+                                                        <a style=" font-size: 30px;color:rgb(79, 88, 219) ;" (click)="choixadresse(adresse)"><i  class="fa fa-check"></i></a>
+                                                        <!-- <a style="margin-left: 20px; font-size: 30px;color:rgb(79, 88, 219);" (click)="editeAdresse(adresse)" ><i class="fa fa-edit"></i></a>
+                                                        <a style="margin-left: 20px; font-size: 30px; color: red;" (click)="supprimadresse(adresse)"><i class="fa fa-trash"></i></a> -->
+                                                    </div>
+                                            </th>
+                                            
+                                        </tr>
+                                       
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <ul>
+                                                    <li class="inner-heading"> <b>{{adresse?.noms}}</b> </li>
+                                                    <li>
+                                                        <p>{{adresse?.telephone1}}/{{adresse?.telephone2}}</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>{{adresse?.ville}}-{{adresse?.pays}}</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>{{adresse?.rue}}
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="color:red;font-style: oblique;" *ngIf="defauladresse?.length == 0 && otherAdresse?.length == 0">Aucune adresse enrégistrée</div>
+
+                    <div class="col-md-4" *ngFor="let adresse of otherAdresse">
+                        <div class="cart-total-table address-box commun-table">
+                            <div class="table-responsive">
+                                <table class="table" >
+                                    <thead>
+                                        <tr>
+                                            <th>Adresse de livraison 
+                                                <div>
+                                                    <a style=" font-size: 30px;color:rgb(79, 88, 219) ;" (click)="choixadresse(adresse)"><i  class="fa fa-check"></i></a>
+                                                </div>
+                                            </th>
+                                            
+                                        </tr>
+                                       
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <ul>
+                                                    <li class="inner-heading"> <b>{{adresse.noms}}</b> </li>
+                                                    <li>
+                                                        <p>{{adresse.telephone1}}/{{adresse?.telephone2}}</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>{{adresse.ville}}-{{adresse.pays}}</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>{{adresse.rue}}
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                         
+                            <a class="btn btn-color right-side"
+                            (click)="addAdresse()">Ajouter une nouvelle addresse</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CONTAINER END -->

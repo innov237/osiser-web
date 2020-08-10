@@ -1,0 +1,69 @@
+<section class="ptb-60">
+    <div class="mycontainer">
+        <div class="row" style="padding-left:6%; padding-right: 6%;">
+            <div class="col-md-2 promo-card">
+                <h1>Vente flash</h1>
+                <h2>Plus de 60% de Réduction</h2>
+                <h3>Date limite</h3>
+                <h4>Dans 2jours</h4>
+                <p class="view-all-btn">Commandez: 655720096</p>
+            </div>
+            <div class="col-md-10 scrolling-wrapper col-12 plr-20 mb-xs-20">
+                <div class="card" *ngIf="isloard">
+                    <img src="assets/images/loarder.gif" alt="" srcset="">
+                </div>
+                <div class="card" *ngFor="let produit of produitData">
+                    <div class="product-item">
+                        <div class="product-item-inner">
+                            <div class="product-image" (click)="openProductDetail(produit)">
+                                <div class="main-label new-label"><span>-{{produit.reduction}}%</span></div>
+                                <a>
+                                    <img class="product-img" src="{{api_url}}storage/{{toArray(produit.image)[0]}}"
+                                        alt="Shopholic">
+                                </a>
+                            </div>
+                            <div class="product-item-details">
+                                <div class="product-item-name">
+                                    <a>{{produit.libelle}}</a>
+                                </div>
+                                <div class="price-box">
+                                    <span class="price">
+                                        {{produit.prix_vente - (produit.prix_vente*produit.reduction)/100 }}
+                                        FCFA</span>
+                                    <del class="price old-price">{{produit.prix_vente}} FCFA</del>
+                                </div>
+                                <div class="rating-summary-block">
+                                    <div class="rating-result" title="53%">
+                                        <span style='width:50%'></span>
+                                    </div>
+                                </div>
+
+                                <div class="product-detail-inner">
+                                    <div class="detail-inner-left align-center">
+                                        <ul>
+                                            <li class="pro-cart-icon" (click)="addToCard(produit)">
+                                                <a title="Add to Cart">
+                                                    <span></span>
+                                                </a>
+                                            </li>
+                                            <li style="cursor: pointer;">
+                                                <a
+                                                    href="https://wa.me/+237655720096?text= salut! je suis intéressé par : {{produit.libelle}}" target="_blank">
+                                                    <img src="assets/images/whatsapp.png" style="height: 40px;" alt=""
+                                                        srcset=""></a>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Furniture block End -->
+
+<app-alert-boxe *ngIf="showSuccess"></app-alert-boxe>

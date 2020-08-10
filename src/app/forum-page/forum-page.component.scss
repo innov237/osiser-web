@@ -1,0 +1,30 @@
+
+.bg-white{
+    background-color: white;
+
+}
+.form-control{
+    height: auto !important;
+}
+.bordure {
+    border-left: 4px solid #FC1744;
+    position: relative;
+}
+.bordure-3 {
+    border-left: 4px solid #FC1744;
+    border-top: 4px solid white;
+    border-right: 4px solid white;
+    cursor: pointer;
+}
+.btn-close{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+}

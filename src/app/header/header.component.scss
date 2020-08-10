@@ -1,0 +1,60 @@
+.input-text {
+  display: block;
+  outline: 0;
+  width: 100%;
+  line-height: 40px;
+  padding: 0 8px 0 48px;
+  border: none;
+  font-size: 16px;
+  border-radius: 20px 0 0 20px;
+}
+
+.search-box input.input-text {
+  border: 1px solid #1FC09F;
+  border-radius: 20px;
+  width: 100%;
+  padding: 6px 6px 6px 10px;
+  margin: 10px 0px;
+  transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  height: 48px;
+  background: #fafafa;
+}
+
+.header-middle {
+  padding-top: 12px;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14);
+  height: 100px;
+}
+
+.search-box button.search-btns {
+  background-color: #238CB3;
+  border: none;
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  border-radius: 0px;
+  color: white;
+  width: 120px;
+  height: 100%;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0 18px 18px 0;
+  cursor: pointer;
+}
+
+.login-boxe{
+    border: 2px solid #238CB3;
+    border-radius: 50%;
+    padding: 5px;
+}
+@media only screen and (max-width: 550px){
+  .search{
+    display: none;
+  }
+}

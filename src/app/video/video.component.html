@@ -1,0 +1,83 @@
+<div class="container-video">
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            <div class="fullvideo-container">
+                <youtube-player videoId="{{currentVideoId}}" suggestedQuality="highres" [height]="500" [width]="1000"
+                    [startSeconds]="43" [endSeconds]="60" autoplay="1">
+                </youtube-player>
+            </div>
+            <div class="videoTitle" style="margin-top: 20px;">
+                <h1 style="font-size: 25px;">Comment coder avec flutter</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis maiores ab soluta autem et
+                    commodi? Odio maxime autem magni quia unde facere perspiciatis nam veniam, reiciendis laudantium
+                    quis nemo aperiam. laudantium Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
+                    alias esse quod aut itaque enim rem libero maxime expedita perspiciatis eum harum voluptas debitis,
+                    sapiente accusamus, ratione excepturi obcaecati placeat.</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="rigth-sideBar"
+                style="margin-top: 50px; margin-left: 40px; height: 100vh; overflow: scroll; cursor: pointer;">
+                <div class="video-list">
+                    <div class="video-list-container" (click)="setVideo('biOMz4puGt8')">
+                        <div class="video-list-box">
+                            <youtube-player videoId="biOMz4puGt8" suggestedQuality="highres" [height]="100"
+                                [width]="150" [startSeconds]="43" [endSeconds]="60">
+                            </youtube-player>
+                        </div>
+                        <div class="video-list-description">
+                            <h1>Comment coder en flutter</h1>
+                            <p style="margin-top: -10px;"> j'aime bien coder avec flutter, c'est super cool vraiment</p>
+                        </div>
+                    </div>
+                    <div class="video-list-container" (click)="setVideo('bxm89gSRUOE')">
+                        <div class="video-list-box">
+                            <youtube-player videoId="bxm89gSRUOE" suggestedQuality="highres" [height]="100"
+                                [width]="150" [startSeconds]="43" [endSeconds]="60">
+                            </youtube-player>
+                        </div>
+                        <div class="video-list-description">
+                            <h1>Comment coder en flutter</h1>
+                            <p style="margin-top: -10px;"> j'aime bien coder avec flutter, c'est super cool vraiment</p>
+                        </div>
+                    </div>
+                    <div class="video-list-container" (click)="setVideo('dQw4w9WgXcQ')">
+                        <div class="video-list-box">
+                            <youtube-player videoId="dQw4w9WgXcQ" suggestedQuality="highres" [height]="100"
+                                [width]="150" [startSeconds]="43" [endSeconds]="60">
+                            </youtube-player>
+                        </div>
+                        <div class="video-list-description">
+                            <h1>Comment coder en flutter</h1>
+                            <p style="margin-top: -10px;"> j'aime bien coder avec flutter, c'est super cool vraiment</p>
+                        </div>
+                    </div>
+                    <div class="video-list-container" (click)="setVideo('HkdAHXoRtos')">
+                        <div class="video-list-box">
+                            <youtube-player videoId="HkdAHXoRtos" suggestedQuality="highres" [height]="100"
+                                [width]="150" [startSeconds]="43" [endSeconds]="60">
+                            </youtube-player>
+                        </div>
+                        <div class="video-list-description">
+                            <h1>Comment coder en flutter</h1>
+                            <p style="margin-top: -10px;"> j'aime bien coder avec flutter, c'est super cool vraiment</p>
+                        </div>
+                    </div>
+                    <div class="video-list-container" (click)="setVideo('dQw4w9WgXcQ')">
+                        <div class="video-list-box">
+                            <youtube-player videoId="dQw4w9WgXcQ" suggestedQuality="highres" [height]="100"
+                                [width]="150" [startSeconds]="43" [endSeconds]="60">
+                            </youtube-player>
+                        </div>
+                        <div class="video-list-description">
+                            <h1>Comment coder en flutter</h1>
+                            <p style="margin-top: -10px;"> j'aime bien coder avec flutter, c'est super cool vraiment</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,205 @@
+<!-- Bread Crumb STRAT -->
+<div class="banner inner-banner1">
+    <div class="container">
+        <section class="banner-detail center-xs">
+            <h1 class="banner-title">Produit</h1>
+            <div class="bread-crumb right-side float-none-xs">
+                <ul>
+                    <li><a href="/"><i class="fa fa-home"></i>Acceuil</a>/</li>
+                    <li><span>detail produit</span></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Bread Crumb END -->
+
+<!-- CONTAINER START -->
+<section class="pt-60">
+    <div class="container">
+        <div class="product-detail-view">
+            <div class="">
+                <div class="">
+                    <div class="row m-0">
+                        <div id="sidebar" class="col-md-5 mb-xs-30 p-0 pr-10 static-sidebar">
+                            <div class="sidebar__inner">
+                                <div class="fotorama" data-nav="thumbs" data-allowfullscreen="native">
+                                    <a>
+                                        <img src="{{api_url}}storage/{{currentImage}}" alt="" style="height: 400px;"
+                                            srcset="" *ngIf="currentImage!=null"></a>
+                                </div>
+                                <div class="row" style="margin-top: 10px; cursor: pointer;">
+                                    <div class="col" *ngFor="let img of toArray(produitData.image)"
+                                        (click)="setImage(img)">
+                                        <img src="{{api_url}}storage/{{img}}" style="height: 130px; width: 130px;"
+                                            alt="Shopholic">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="content" class="col-md-7 p-0 pl-10">
+                            <div class="product-detail-main">
+                                <div class="product-item-details mb-60">
+                                    <h1 class="product-item-name">{{produitData?.libelle}}</h1>
+                                    <div class="rating-summary-block">
+                                        <div title="53%" class="rating-result"> <span style="width:53%"></span> </div>
+                                    </div>
+                                    <div class="price-box"> <span
+                                            class="price">{{produitData.prix_vente - (produitData.prix_vente*produitData.reduction)/100 }}
+                                            FCFA</span>
+                                        <del class="price old-price">{{produitData.prix_vente}} FCFA</del>
+                                    </div>
+                                    <div class="product-info-stock-sku">
+                                        <div>
+                                            <label>Disponibilité : </label>
+                                            <span class="info-deta"> En stock</span>
+                                        </div>
+                                        <div>
+                                            <label>Livraison: </label>
+                                            <span class="info-deta"> oui</span>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-20">
+
+                                    <div [froalaView]="produitData.description"></div>
+                                    <ul class="product-list">
+                                        <li><i class="fa fa-check"></i> Satisfaction garantie à 100%</li>
+                                        <li><i class="fa fa-check"></i> Livraison gratuite pour les commandes de plus de
+                                            30000 FCFA</li>
+                                        <li><i class="fa fa-check"></i> 14 jours retour facile</li>
+                                    </ul>
+
+                                    <hr class="mb-20">
+                                    <div class="mb-20">
+                                        <div class="bottom-detail cart-button responsive-btn">
+                                            <ul>
+                                                <li class="pro-cart-icon">
+                                                    <a (click)="addToCard(produitData)" title="Add to Cart"
+                                                        class="btn btn-color"><span></span> Ajouter au chariot</a>
+                                                </li>
+                                                <!-- <li class="pro-wishlist-icon"><a href="wishlist.html"
+                                                            title="Wishlist"><span></span> Wishlist</a></li>
+                                                    <li class="pro-compare-icon"><a href="compare.html"
+                                                            title="Compare"><span></span> Compare</a></li>
+                                                    <li class="pro-email-icon"><a href="#"
+                                                            title="Email to Friends"><span></span> Email to Friends</a></li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="share-link">
+                                            <label>Share This : </label>
+                                            <div class="social-link">
+                                                <ul class="social-icon">
+                                                    <li><a class="facebook" title="Facebook" href="#"><i
+                                                                class="fa fa-facebook"> </i></a></li>
+                                                    <li><a class="twitter" title="Twitter" href="#"><i
+                                                                class="fa fa-twitter"> </i></a></li>
+                                                    <li><a class="linkedin" title="Linkedin" href="#"><i
+                                                                class="fa fa-linkedin"> </i></a></li>
+                                                    <li><a class="rss" title="RSS" href="#"><i class="fa fa-rss"> </i></a>
+                                                    </li>
+                                                    <li><a class="pinterest" title="Pinterest" href="#"><i
+                                                                class="fa fa-pinterest"> </i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                </div>
+                            </div>
+                            <div class="product-detail-tab">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="tabs">
+                                            <ul class="nav nav-tabs">
+                                                <li><a class="tab-Description"
+                                                        [ngClass]="{'selected': viewOption == 'description' }"
+                                                        (click)="viewOption = 'description'"
+                                                        title="Description">Description</a></li>
+                                                <li><a class="tab-Product-Tags"
+                                                        [ngClass]="{'selected': viewOption == 'produit' }"
+                                                        (click)="viewOption = 'produit'" title="Product-Tags">Tags du
+                                                        produit</a>
+                                                </li>
+                                                <li><a class="tab-Reviews"
+                                                        [ngClass]="{'selected': viewOption == 'commentaire' }"
+                                                        (click)="viewOption = 'commentaire'"
+                                                        title="Reviews">Commentaires</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div id="items">
+                                            <div class="tab_content">
+                                                <ul>
+                                                    <li *ngIf="viewOption == 'description'">
+                                                        <div class="items-Description selected">
+                                                            <div class="Description">
+                                                                <div [froalaView]="produitData.description"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li *ngIf="viewOption == 'produit'">
+                                                        <div class="items-Product-Tags selected">
+                                                            <strong>{{produitData?.keyword}}</strong><br />
+                                                        </div>
+                                                    </li>
+                                                    <li *ngIf="viewOption == 'commentaire'">
+                                                        <div class="items-Reviews selected">
+                                                            <div class="comments-area">
+                                                                <h4>commentaires<span>({{commantaire.length}})</span>
+                                                                </h4>
+                                                                <ul class="comment-list mt-30">
+                                                                    <li *ngFor="let comment of commantaire">
+                                                                        <div class="comment-user"> <img
+                                                                                src="assets/images/comment-user.jpg"
+                                                                                alt="Shopholic"> </div>
+                                                                        <div class="comment-detail">
+                                                                            <div class="user-name"> {{comment.nom}}
+                                                                            </div>
+                                                                            <div class="post-info">
+                                                                                <ul>
+                                                                                    <li>{{comment.date_comment | date:'dd-MM-yyyy'}}
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <p class="mb-0"> {{comment.comment}} </p>
+                                                                            <p *ngIf="hqseUserData.userType == 'administrateur'"
+                                                                                (click)="supprimerCommentaire(comment)"
+                                                                                style="cursor: pointer; display: inline-block; padding:2px 5px; font-size: 10px; background-color: rgb(236, 58, 96); color: white; border-radius: 10px;">
+                                                                                supprimez</p>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="main-form mt-30">
+                                                                <form>
+                                                                    <div class="row mt-30 mlr_-20">
+                                                                        <div class="col-12 mb-20 plr-20">
+                                                                            <textarea cols="30" rows="3"
+                                                                                placeholder="commentaire..."
+                                                                                [(ngModel)]="comment" name="comment"
+                                                                                required></textarea>
+                                                                        </div>
+                                                                        <div class="col-12 plr-20">
+                                                                            <button class="btn btn-color" name="submit"
+                                                                                type="button"
+                                                                                (click)="sendComment(produitData)">Envoyer</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-alert-boxe *ngIf="showSuccess"></app-alert-boxe>

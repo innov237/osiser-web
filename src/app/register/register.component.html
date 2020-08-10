@@ -1,0 +1,76 @@
+<section class="checkout-section ptb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p style="text-align: center; color: red;">{{errMessage}}</p>
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-8 col-md-8 ">
+                        <form class="main-form full" [formGroup]="inscriptionForm">
+                            <div class="row">
+                                <div class="col-12 mb-20">
+                                    <div class="heading-part heading-bg">
+                                        <h2 class="heading">Inscription</h2>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="heading-part line-bottom ">
+                                        <h2 class="form-title heading">Vos informations personnelles</h2>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-box">
+                                        <label for="f-name">votre nom</label>
+                                        <input type="text" formControlName='nom' placeholder="Nom">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-box">
+                                        <label for="l-name">Email</label>
+                                        <input type="email" formControlName='email' placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-box">
+                                        <label for="login-email">Telephone</label>
+                                        <input id="login-email" type="email" required="" placeholder="Telephone">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-box">
+                                        <label for="telephone">Telephone</label>
+                                        <input id="telephone" formControlName='telephone' type="number" required=""
+                                            placeholder="Telephone">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-box">
+                                        <label for="login-pass">Mo de passe</label>
+                                        <input id="login-pass" formControlName='password' type="password" required=""
+                                            placeholder="mot de passe">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-box">
+                                        <label for="re-enter-pass">Confirmer le mot de passe</label>
+                                        <input id="re-enter-pass" formControlName='passwordConfirm' type="password"
+                                            required="" placeholder="Re-enter your Password">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button name="submit" type="submit" class="btn-color right-side"
+                                        (click)="updateUserProfil(inscriptionForm)">valider</button>
+                                </div>
+                                <div class="col-12">
+                                    <hr>
+                                    <div class="new-account align-center mt-20"> <span>J'ai deja un compte
+                                            </span> <a class="link" title="Register with Shopholic"
+                                            routerLink="login">Me connecter</a> </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

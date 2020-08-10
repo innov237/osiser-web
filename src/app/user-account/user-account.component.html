@@ -1,0 +1,452 @@
+<section class="checkout-section ptb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="account-sidebar account-tab mb-sm-30">
+                    <div class="tab-title-bg">
+                        <div class="heading-part">
+                            <div class="sub-title"><span></span> Mon Compte</div>
+                        </div>
+                    </div>
+                    <div class="account-tab-inner">
+                        <ul class="account-tab-stap">
+                            <li id="step1" class="active"> <a>Mes adresses<i class="fa fa-angle-right"></i> </a> </li>
+                            <li id="step2" class=""> <a>Ajouter une adresse<i class="fa fa-angle-right"></i> </a> </li>
+                            <li id="step3" class=""> <a>Mes commandes<i class="fa fa-angle-right"></i> </a> </li>
+                            <li id="step4" class=""> <a>Changer le mot de passe<i class="fa fa-angle-right"></i> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div id="data-step1" class="account-content" data-temp="tabdata" style="display: block;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading-part heading-bg mb-30">
+                                <h2 class="heading m-0">Adresse de Livraison</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-30">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="heading-part">
+                                    <h3 class="sub-heading">
+                                        {{authUserData.userName ? authUserData.userName : 'UserName'}}</h3>
+                                </div>
+                                <!-- <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Donec eros tellus, nec consec
+                                    elit. Donec eros tellus laoreet sit amet. <a class="account-link" id="subscribelink"
+                                        href="#">Click Here</a></p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-0" *ngIf="!editadress">
+                        <div class="row">
+                            <div class="col-12 mb-20">
+                                <div class="heading-part">
+                                    <h3 class="sub-heading">Information d'adresse</h3>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-6" *ngFor="let adresse of defauladresse">
+                                <div class="cart-total-table address-box commun-table">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Adresse par defaut
+                                                        <div>
+                                                            <a style="margin-left: 20px; font-size: 30px;color:rgb(79, 88, 219);"
+                                                                (click)="editeAdresse(adresse)"><i
+                                                                    class="fa fa-edit"></i></a>
+                                                            <a style="margin-left: 20px; font-size: 30px; color: red;"
+                                                                (click)="supprimadresse(adresse)"><i
+                                                                    class="fa fa-trash"></i></a>
+                                                        </div>
+                                                    </th>
+
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <ul>
+                                                            <li class="inner-heading"> <b>{{adresse?.noms}}</b> </li>
+                                                            <li>
+                                                                <p>{{adresse?.telephone1}}/{{adresse?.telephone2}}</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>{{adresse?.ville}}-{{adresse?.pays}}</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>{{adresse?.rue}}
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="color:red;font-style: oblique;"
+                                *ngIf="defauladresse?.length == 0 && otherAdresse?.length == 0">Aucune adresse
+                                enrégistrée</div>
+
+                            <div class="col-md-6" *ngFor="let adresse of otherAdresse">
+                                <div class="cart-total-table address-box commun-table">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Adresse de livraison
+                                                        <div>
+                                                            <a style="margin-left: 20px; font-size: 30px;color:rgb(79, 88, 219);"
+                                                                (click)="editeAdresse(adresse)"><i
+                                                                    class="fa fa-edit"></i></a>
+                                                            <a style="margin-left: 20px; font-size: 30px; color: red;"
+                                                                (click)="supprimadresse(adresse)"><i
+                                                                    class="fa fa-trash"></i></a>
+                                                        </div>
+                                                    </th>
+
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <ul>
+                                                            <li class="inner-heading"> <b>{{adresse.noms}}</b> </li>
+                                                            <li>
+                                                                <p>{{adresse.telephone1}}/{{adresse?.telephone2}}</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>{{adresse.ville}}-{{adresse.pays}}</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>{{adresse.rue}}
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="account-content" *ngIf="editadress" style="display: block;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading-part heading-bg mb-30">
+                                <h2 class="heading m-0">Modifier une Adresse</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-0">
+                        <form action="order-overview.html" [formGroup]="formadresseupdate" class="main-form full">
+                            <div class="row mb-20">
+                                <div class="col-12 mb-20">
+                                    <div class="heading-part">
+                                        <h3 class="sub-heading">Adresse de livraison</h3>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="noms" value="{{adressevalue?.noms}}"
+                                            placeholder="Nom complet">
+                                        <span style="color: red;" *ngIf="!formadresseupdate.controls.noms.valid">Nom
+                                            invalid</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="telephone"
+                                            value="{{adressevalue?.telephone1}}" placeholder="Numéro de téléphone ">
+                                        <span style="color: red;"
+                                            *ngIf="!formadresseupdate.controls.telephone.valid ">Numéro de téléphone
+                                            invalid</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="telephone2"
+                                            value="{{adressevalue?.telephone2}}"
+                                            placeholder="2 eme numéro de téléphone ">
+                                        <span style="color: red;"
+                                            *ngIf="!formadresseupdate.controls.telephone2.valid ">Numéro de téléphone
+                                            invalid</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="rue" value="{{adressevalue?.rue}}"
+                                            placeholder="S'il vous plaît fournir le numéro et/ou la rue.">
+                                        <span style="color: red;" *ngIf="!formadresseupdate.controls.rue.valid">rue
+                                            invalid</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <div class="input-box">
+                                        <input type="text"  placeholder="Expédition" #localisation>
+                                        <span>Veuillez inclure le point de repère (par exemple: Opposite Bank) en
+                                            tant que service de transporteur peut trouver plus facile de localiser
+                                            votre adresse.</span>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6">
+
+                                    <div class="input-box select-dropdown">
+                                        <fieldset>
+                                            <select value="{{adressevalue?.pays}}" class="form-control">
+                                                <option value="Cameroun" selected>Choisissez le pays</option>
+                                                <option value="{{pays.nom}}" *ngFor="let pays of Allpays">{{pays.nom}}
+                                                </option>
+                                            </select>
+
+                                        </fieldset>
+                                        <span style="color: red;" *ngIf="!formadresseupdate.controls.pays.valid">pays
+                                            invalid</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="ville" value="{{adressevalue?.ville}}"
+                                            placeholder="Choisir une ville">
+                                        <span style="color: red;" *ngIf="!formadresseupdate.controls.ville.valid">ville
+                                            invalid</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box select-dropdown">
+                                        <fieldset>
+                                            <select formControlName="isDefault" name="shippingstateId"
+                                                class="form-control" id="shippingstateid">
+                                                <option selected value="0">Adresse par défaut</option>
+                                                <option value="1">Oui</option>
+                                                <option value="0">Non</option>
+                                            </select>
+                                            <span style="color: red;"
+                                                *ngIf="!formadresseupdate.controls.isDefault.valid">Adresse par défaut
+                                                invalid</span>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="btn btn-color right-side"
+                                        (click)="updateAdress(formadresseupdate,adressevalue.id)">Enrégistrer</a>
+
+                                    <a class="btn btn-color left-side">Annuler</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div id="data-step2" class="account-content" data-temp="tabdata" style="display: none;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading-part heading-bg mb-30">
+                                <h2 class="heading m-0">Ajouter une Adresse</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-0">
+                        <form action="order-overview.html" [formGroup]="formadresse" class="main-form full">
+                            <div class="row mb-20">
+                                <div class="col-12 mb-20">
+                                    <div class="heading-part">
+                                        <h3 class="sub-heading">Adresse de livraison</h3>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="noms" placeholder="Nom complet">
+                                        <span style="color: red;" *ngIf="!formadresse.controls.noms.valid">Nom
+                                            invalid</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="telephone"
+                                            placeholder="Numéro de téléphone ">
+                                        <span style="color: red;" *ngIf="!formadresse.controls.telephone.valid ">Numéro
+                                            de téléphone invalid</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="telephone2"
+                                            placeholder="2 eme numéro de téléphone ">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="rue"
+                                            placeholder="S'il vous plaît fournir le numéro et/ou la rue.">
+                                        <span style="color: red;" *ngIf="!formadresse.controls.rue.valid">rue
+                                            invalid</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <div class="input-box">
+                                        <input type="text"  placeholder="Expédition" #localisation>
+                                        <span>Veuillez inclure le point de repère (par exemple: Opposite Bank) en
+                                            tant que service de transporteur peut trouver plus facile de localiser
+                                            votre adresse.</span>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6">
+
+                                    <div class="input-box select-dropdown">
+                                        <fieldset>
+                                            <select formControlName="pays" class="form-control">
+                                                <option value="Cameroun" selected>Choisissez le pays</option>
+                                                <option value="{{pays.nom}}" *ngFor="let pays of Allpays">{{pays.nom}}
+                                                </option>
+                                            </select>
+
+                                        </fieldset>
+                                        <span style="color: red;" *ngIf="!formadresse.controls.pays.valid">pays
+                                            invalid</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <input type="text" formControlName="ville" placeholder="Choisir une ville">
+                                        <span style="color: red;" *ngIf="!formadresse.controls.ville.valid">ville
+                                            invalid</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box select-dropdown">
+                                        <fieldset>
+                                            <select formControlName="isDefault" name="shippingstateId"
+                                                class="form-control" id="shippingstateid">
+                                                <option selected value="0">Adresse par défaut</option>
+                                                <option value="1">Oui</option>
+                                                <option value="0">Non</option>
+                                            </select>
+                                            <span style="color: red;"
+                                                *ngIf="!formadresse.controls.isDefault.valid">Adresse par défaut
+                                                invalid</span>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="btn btn-color right-side"
+                                        (click)="saveAdresse(formadresse)">Enrégistrer</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="data-step3" class="account-content" data-temp="tabdata" style="margin-top: 50px;">
+                    <div id="form-print" class="admission-form-wrapper">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="heading-part heading-bg mb-30">
+                                    <h2 class="heading m-0">Mes commandes</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card col-lg-6" *ngFor="let commande of Commandes">
+                                <div lines="none">
+                                    <div style="height:80px; width: 80px; margin-left: 0px; margin-bottom: 10px;"
+                                        *ngFor="let ligneCmd of commande.ligne_Commande; let i=index">
+                                        <img src="{{api_url}}storage/{{toArray(ligneCmd.image)[0]}}">
+                                    </div>
+                                    <div style="margin-left: 10px;">
+                                        <div>No: {{commande.id}} du {{commande.date_commande}} <br> Etat :
+                                            <span>{{commande.etat_commande}}</span>
+                                        </div>
+                                        <h2 class="titre-produit" *ngFor="let ligneCmd of commande.ligne_Commande">
+                                            <li>{{ligneCmd.libelle}}</li>
+                                        </h2>
+                                        <h2 class="price">Montant : {{commande.montant_commande}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="print-btn text-center mt-30">
+                                <button onclick="printDiv('form-print')" class="btn btn-color" type="button">Imprimer la
+                                    fiche</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="data-step4" class="account-content" data-temp="tabdata" style="display: none;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading-part heading-bg mb-30">
+                                <h2 class="heading m-0">Changer le mot de passe</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <form [formGroup]="formpassword" class="main-form full">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-box">
+                                    <label for="old-pass">Ancien mot de passe</label>
+                                    <input type="password" placeholder="Entrer votre ancien mot de passe"
+                                        formControlName="ancpassword">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-box">
+                                    <label for="login-pass">Nouveau mot de passe</label>
+                                    <input type="password" placeholder="Entrer votre nouveau mot de passe"
+                                        formControlName="newpassword" id="login-pass">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-box">
+                                    <label for="re-enter-pass">Confirmer mot de passe</label>
+                                    <input type="password" placeholder="Confirmer le nouveau mot de passe"
+                                        formControlName="Confirmpassword" id="re-enter-pass">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn-color" type="submit" name="submit"
+                                    (click)="changepassword(formpassword)">Changer le mot de passe</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

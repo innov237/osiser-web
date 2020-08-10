@@ -1,0 +1,171 @@
+<section class="main-wrap">
+    <div class="mycontainer">
+        <div class="row mlr_-20">
+            <div class="col-xl-3 col-lg-3 plr-20">
+                <div class="sidebar-menu-dropdown home">
+                    <a class="btn-sidebar-menu-dropdown"> Categories <i class="fa fa-bars"></i></a>
+                    <div id="cat" class="cat-dropdown">
+                        <div class="sidebar-contant">
+                            <div id="menu" class="navbar-collapse collapse">
+                                <!-- <div class="top-right-link mobile d-block d-sm-none">
+                                    <ul>
+                                        <li class="info-link wishlist-icon content">
+                                            <a title="Wishlist" href="wishlist.html">
+                                                <span></span>
+                                                Wish List</a>
+                                        </li>
+                                        <li class="info-link compare-icon">
+                                            <a href="compare.html" title="Compare">
+                                                <span></span>
+                                                Compare</a>
+                                        </li>
+                                        <li class="info-link giftcard-icon">
+                                            <a title="Gift card" href="#">
+                                                <span></span>
+                                                Gift card</a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                                <app-sidemenu></app-sidemenu>
+                                <div class="header-top mobile d-block d-sm-none">
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="top-link top-link-left select-dropdown">
+                                                    <fieldset>
+                                                        <select name="speed" class="countr option-drop">
+                                                            <option selected="selected">English</option>
+                                                            <option>Frence</option>
+                                                            <option>German</option>
+                                                        </select>
+                                                        <select name="speed" class="currenc option-drop">
+                                                            <option selected="selected">USD</option>
+                                                            <option>EURO</option>
+                                                            <option>POUND</option>
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7 mt-20 plr-20 right-side float-none-sm float-right-imp">
+                <!-- BANNER STRAT -->
+                <section class="banner-main">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="assets/images/promo3.jpg"
+                                    style="width: 100%; height: 100%;" alt="Second slide">
+                            </div>
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="assets/images/promo.jpg"
+                                    style="width: 100%; height: 100%;" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="assets/images/banner4.jpg"
+                                    style="width: 100%; height: 100%;" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="assets/images/promo2.jpg"
+                                    style="width: 100%; height: 100%;" alt="Second slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"
+                            style="background-color: red; height: 50px; width: 50px; top: 45%;">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            style="background-color: red; height: 50px; width: 50px; top: 45%;" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                </section>
+                <section>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-6"> <a href="#" style="cursor: pointer;" target="_blank">
+                                <img style="height: 60px; width: 100%; border-radius: 20px;"
+                                    src="assets/images/service.jpg" alt="" srcset=""></a>
+                        </div>
+                        <div class="col-6">
+                            <a href="https://www.facebook.com/osiser237">
+                                <img style="height: 60px; width: 100%; border-radius: 20px;"
+                                    src="assets/images/facebook2.jpg" alt="" srcset=""></a>
+                        </div>
+                    </div>
+                </section>
+                <!-- BANNER END -->
+            </div>
+            <div class="col-xl-2 col-lg-2 mt-20 plr-20 right-side float-none-sm float-right-imp">
+                <div class="rigth-card">
+                    <div style="text-align: center; cursor: pointer;" routerLink='video'>
+                        <img class="circular-img" src="assets/images/videologo.jpg" alt="" srcset="">
+                    </div>
+                    <h1 style="cursor: pointer;">Video</h1>
+                    <div class="divider" style="height: 10px; width: 100%; background-color: #f2f5f5;"></div>
+                    <p style="text-align: center;">
+                        Achetez vos produits moins cher et faites vous livrer à domicile
+                    </p>
+                    <ol>
+                        <li>Prix abordable</li>
+                        <li>Livraison rapide</li>
+                        <li>Produits et Services de qualité</li>
+                        <li>Conseils et orientation</li>
+                    </ol>
+                    <div class="contact"
+                        style="text-align: left; margin-top: 10px; margin-bottom: 10px; background-color: black; color: white; border-radius: 20px; padding: 5px;">
+                        <strong>Contactez-nous : <br>(+237) 655720096 <br>(+237) 679102156</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brand logo block Start  -->
+<app-promo-product-row></app-promo-product-row>
+<!-- Brand logo block End  -->
+
+<!-- Services Features Block Start -->
+<section class="mt-20" style="margin-top: 50px;">
+    <div class="mycontainer" style="background-color: white; padding: 5px;">
+        <div class="ser-feature-block">
+            <div class="row mlr_-20">
+                <div class="col-md-4 col-xs-6 plr-20 center-sm">
+                    <div class="feature-box-main">
+                        <div class="feature-box feature1">
+                            <div class="ser-title">Livraison rapide <br>& mois cher</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-6 plr-20 center-sm">
+                    <div class="feature-box-main">
+                        <div class="feature-box feature2">
+                            <div class="ser-title">100% Satisfait <br>ou Rembourssé</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-6 plr-20 center-sm">
+                    <div class="feature-box-main">
+                        <div class="feature-box feature3">
+                            <div class="ser-title">24/7 Service <br>Client</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Features Block End -->
+
+<app-product-list></app-product-list>
+<app-forum></app-forum>
+<!-- CONTAINER END -->

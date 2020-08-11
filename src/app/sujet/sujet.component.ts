@@ -22,6 +22,7 @@ export class SujetComponent implements OnInit {
   types: any;
   currentSujet: any;
   message: any;
+  typeCorrdonnateur: any;
 
   constructor(private router: Router,
     public httpservice: HttpService) {
@@ -45,11 +46,15 @@ export class SujetComponent implements OnInit {
     if (this.currentuser != null) {
       this.passabonnement = false;
       this.currentSujet = data;
-      if (this.isabonne) {
-        this.validation.emit(this.isviewChat);
-        this.curentDataSujet.emit(this.currentSujet);
-      } else {
-        this.passabonnement = true;
+      if( this.currentuser.userType == "administrateur" && !this.isabonne){
+        this.creeAbonnement(this.typeCorrdonnateur);
+      }else{
+        if (this.isabonne) {
+          this.validation.emit(this.isviewChat);
+          this.curentDataSujet.emit(this.currentSujet);
+        } else {
+          this.passabonnement = true;
+        }
       }
     } else {
       this.router.navigateByUrl('/login')
@@ -60,6 +65,11 @@ export class SujetComponent implements OnInit {
     this.httpservice.getAllData("api/forum/type-abonnement").subscribe(
       (data: any) => {
         this.types = data;
+        for (let i = 0; i < data.length; i++) {
+          if(data[i].type == "Coordonnateur") {
+            this.typeCorrdonnateur = data[i].id;
+          }
+        }
       }
     )
   }
@@ -67,7 +77,7 @@ export class SujetComponent implements OnInit {
   creeAbonnement(type) {
     var posdata = {
       'sujet_id': this.currentSujet.id,
-      'type_id': type.value,
+      'type_id': type,
       'user_id':this.currentuser.user_id,
     }
  
@@ -76,10 +86,14 @@ export class SujetComponent implements OnInit {
         if (data.success) {
           this.passabonnement = false;
           this.message = data.message,
+          this.validationAbonne.emit(this.validat);
           setTimeout(() => {
             this.message = null;
-          }, 10000);
-          this.validationAbonne.emit(this.validat);
+            // if (this.currentuser.userType == "administrateur") {
+            //   this.validation.emit(this.isviewChat);
+            //   this.curentDataSujet.emit(this.currentSujet);
+            // }
+          }, 5000);      
         }
       },err=>{
         console.log(err)

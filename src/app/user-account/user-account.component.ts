@@ -26,8 +26,9 @@ export class UserAccountComponent implements OnInit {
   adressevalue: any;
   formadresseupdate: FormGroup;
   api_url: string = `${environment.api_url}`;
+  showLoarder: boolean = false;
 
-  constructor(private router: Router, private panierService: CartService, public httpservice: HttpService, public formbuilder: FormBuilder, ) {
+  constructor(private router: Router, private panierService: CartService, public httpservice: HttpService, public formbuilder: FormBuilder,) {
     this.authUserData = JSON.parse(localStorage.getItem('hqseUserData'));
     if (this.authUserData == null) {
       router.navigateByUrl('accueil');
@@ -76,6 +77,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   saveAdresse(formadresse) {
+    this.showLoarder = true;
 
     var postdata = {
       nom: formadresse.value.noms,
@@ -92,11 +94,14 @@ export class UserAccountComponent implements OnInit {
       this.getAdresse();
       this.formadresse.reset();
       this.message = res.message;
+      this.showLoarder = false;
       alert(this.message);
     })
   }
 
   updateAdress(formadresse, id) {
+    this.showLoarder = true;
+
     var postdata = {
       nom: formadresse.value.noms,
       telephone: formadresse.value.telephone,
@@ -111,6 +116,7 @@ export class UserAccountComponent implements OnInit {
     this.httpservice.postData('api/commande/modifierCoordonnee', postdata).subscribe(res => {
       console.log(res);
       alert(res.message);
+      this.showLoarder = false;
       this.formadresseupdate.reset();
     })
   }
@@ -163,6 +169,7 @@ export class UserAccountComponent implements OnInit {
 
 
   changepassword(formpassword) {
+    this.showLoarder = true;
     var postdata = {
       a_password: formpassword.value.ancpassword,
       password: formpassword.value.newpassword,
@@ -171,6 +178,7 @@ export class UserAccountComponent implements OnInit {
     this.httpservice.postData('api/auth/modifierPassword', postdata).subscribe(res => {
       console.log(res);
       if (res.success) {
+        this.showLoarder = false;
         alert('modifier avec succes');
       }
     })

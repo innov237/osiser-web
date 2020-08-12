@@ -10,45 +10,47 @@ import { Router } from '@angular/router';
 })
 export class ForumPageComponent implements OnInit {
 
-  catergories: any= [];
+  catergories: any = [];
   senddata: any;
   isreload = false;
   isviewchat = false;
-  currentDataSujet : any;
+  currentDataSujet: any;
   currentuser: any;
   currentAbonnerUser: any;
-  message:string;
+  message: string;
   error: any;
   discussions: any;
   currentResponse = {
-    'nom' : null,
+    'nom': null,
     'message': null,
     'reply_id': null
   };
 
+  isLoad: boolean = false;
+
   constructor(private router: Router,
     public httpservice: HttpService,
     public dataservice: DataService
-    ) {
-      this.currentuser = JSON.parse(localStorage.getItem('hqseUserData'));
-      this.getSujetCtegorie();
-    }
+  ) {
+    this.currentuser = JSON.parse(localStorage.getItem('hqseUserData'));
+    this.getSujetCtegorie();
+  }
 
   ngOnInit(): void {
   }
 
-  eventReload(event){
+  eventReload(event) {
     this.isreload = event;
     this.getSujetCtegorie()
   }
 
-  dataSujet(event){
+  dataSujet(event) {
     this.currentDataSujet = event;
     this.getCurrentAbonnerUser(this.currentDataSujet.abonner);
     this.getMessage()
   }
-  
-  getCurrentAbonnerUser(data){
+
+  getCurrentAbonnerUser(data) {
     for (let i = 0; i < data.length; i++) {
       if (this.currentuser.user_id === data[i].user_id) {
         this.currentAbonnerUser = data[i];
@@ -56,63 +58,67 @@ export class ForumPageComponent implements OnInit {
     }
   }
 
-  sendData(libelle,data){
+  sendData(libelle, data) {
     this.senddata = {
       'libelle': libelle,
       'data': data
     };
-    
+
   }
 
   getSujetCtegorie() {
     this.httpservice.getAllData('api/forum/liste-sujet-categorie').subscribe(
       (data: any) => {
         this.catergories = data;
-        this.sendData(this.catergories[0].libelle_categorie,this.catergories[0].sujets)
+        this.sendData(this.catergories[0].libelle_categorie, this.catergories[0].sujets)
         this.isreload = false
       }
     )
   }
 
-  eventChangeview(event){
+  eventChangeview(event) {
     this.isviewchat = true;
   }
 
-  sendMessage(){
+  sendMessage() {
+
     if (this.message == "") {
       this.error = "laissez un message !!!"
       setTimeout(() => {
         this.error = null;
       }, 5000);
     } else {
+      this.isLoad = true;
       var postData = {
         'abonner_id': this.currentAbonnerUser.id,
         'reply_id': this.currentResponse.reply_id,
-        'message': this.message 
+        'message': this.message
       };
       this.httpservice.postData('api/forum/creer-discussion', postData).subscribe(
         data => {
           if (data.success) {
             this.message = "";
+            this.isLoad = false;
             this.getMessage();
             this.close();
           }
-        },err =>{
+        }, err => {
           console.log(err);
+          this.isLoad = false;
         }
       )
     }
   }
 
-  getMessage(){
-    this.httpservice.getOneData('api/forum/list-discussion-sujet',this.currentDataSujet.id).subscribe(
+  getMessage() {
+    this.httpservice.getOneData('api/forum/list-discussion-sujet', this.currentDataSujet.id).subscribe(
       data => {
         this.discussions = data;
       }
     )
   }
 
-  responseDiscussion(discussion){
+  responseDiscussion(discussion) {
     this.currentResponse.reply_id = discussion.id;
     this.currentResponse.message = discussion.message;
     this.currentResponse.nom = discussion.nom;
@@ -128,9 +134,9 @@ export class ForumPageComponent implements OnInit {
     window.document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 
-  supprimerDiscussion(discussion){
+  supprimerDiscussion(discussion) {
     if (confirm("voulez vous supprimer cette discussion ?")) {
-      this.httpservice.postData('api/forum/supprimer-discussion', {id: discussion.id}).subscribe(
+      this.httpservice.postData('api/forum/supprimer-discussion', { id: discussion.id }).subscribe(
         data => {
           if (data.success) {
             this.getMessage()
@@ -138,5 +144,18 @@ export class ForumPageComponent implements OnInit {
         }
       )
     }
+  }
+
+  bloquerAbonner(idUser) {
+    if (confirm("voulez vous bloquer cet utilisateur ?")) {
+      this.httpservice.postData('api/forum/deactivate-abonner', { id: idUser }).subscribe(
+        data => {
+          if (data.success) {
+            alert("Utilisateur bloqué");
+          }
+        }
+      )
+    }
+
   }
 }

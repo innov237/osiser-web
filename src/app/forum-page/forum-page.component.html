@@ -7,7 +7,10 @@
                         <div class="card-header">
                             <h1 style="font-size: 20px;">Catégorie de sujet</h1>
                         </div>
-                        <li style="cursor: pointer;" (click)="sendData(catergorie.libelle_categorie,catergorie.sujets);isviewchat = false" *ngFor="let catergorie of catergories" class="list-group-item d-flex justify-content-between align-items-center">
+                        <li style="cursor: pointer;"
+                            (click)="sendData(catergorie.libelle_categorie,catergorie.sujets);isviewchat = false"
+                            *ngFor="let catergorie of catergories"
+                            class="list-group-item d-flex justify-content-between align-items-center">
                             {{catergorie.libelle_categorie}}
                             <span class="badge badge-primary badge-pill">{{catergorie.sujets.length}}</span>
                         </li>
@@ -16,23 +19,26 @@
             </div>
         </div>
         <div *ngIf="!isviewchat" class="col-md-9 mt-2 mb-2">
-            <app-sujet [sujets]="senddata" (validationAbonne)="eventReload($event)" (validation)="eventChangeview($event)" (curentDataSujet)="dataSujet($event)" ></app-sujet>
+            <app-sujet [sujets]="senddata" (validationAbonne)="eventReload($event)"
+                (validation)="eventChangeview($event)" (curentDataSujet)="dataSujet($event)"></app-sujet>
         </div>
         <div *ngIf="isviewchat" class="col-md-9 mt-2 mb-2">
             <div class="sujet">
                 <div class="jumbotron" style="background-color: cadetblue; color: white; padding: 15px;">
-                    <h1 class="display-6" style="color: white;">{{currentDataSujet.libelle_categorie}}: {{currentDataSujet.titre}}</h1>
+                    <h1 class="display-6" style="color: white;">{{currentDataSujet.libelle_categorie}}:
+                        {{currentDataSujet.titre}}</h1>
                     <p class="lead">{{currentDataSujet.description}}</p>
-        
+
                 </div>
             </div>
             <div class="discussion">
-                
+
                 <div class="bg-white mb-2" *ngFor="let discussion of discussions" id="{{discussion.id}}">
                     <div class="bg-faded" *ngIf="discussion.reply != null" (click)="scrollToId(discussion.reply.id)">
                         <div class="container-fluid bordure-3">
                             <strong>@ {{discussion.reply.nom}}</strong>
-                            <p style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis; margin-bottom: 0px;"> 
+                            <p
+                                style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis; margin-bottom: 0px;">
                                 {{discussion.reply.message}}
                             </p>
                         </div>
@@ -51,13 +57,21 @@
                     </div>
                     <div class="row" style="padding: 5px;">
                         <div class="col-md-3">
-                            le {{discussion.created_at | date:'dd MM yyyy'}}
+                            le {{discussion.created_at | date:'dd/MM/yyyy hh:mm'}}
+                            <p *ngIf="currentuser.user_id != discussion.user_id && currentuser.userType=='administrateur'"
+                                (click)="bloquerAbonner(discussion.user_id)"
+                                style="cursor: pointer; color: red; text-decoration: underline;">
+                                bloquer cet utilisateur</p>
                         </div>
                         <div class="col-9" style="text-align: right;">
-                            <p (click)="responseDiscussion(discussion)" style="cursor: pointer; display: inline-block; margin-left: 10px; padding: 5px; background-color: cadetblue; color: white; border-radius: 10px;">
+                            <p (click)="responseDiscussion(discussion)"
+                                style="cursor: pointer; display: inline-block; margin-left: 10px; padding: 5px; background-color: cadetblue; color: white; border-radius: 10px;">
                                 Repondre</p>
-                            <p *ngIf="currentuser.user_id == discussion.user_id" (click)="supprimerDiscussion(discussion)" style="cursor: pointer; display: inline-block; margin-left: 10px; padding: 5px; background-color: rgb(236, 58, 96); color: white; border-radius: 10px;">
-                                Supprimez</p>
+                            <p *ngIf="currentuser.user_id == discussion.user_id || currentuser.userType=='administrateur'"
+                                (click)="supprimerDiscussion(discussion)"
+                                style="cursor: pointer; display: inline-block; margin-left: 10px; padding: 5px; background-color: rgb(236, 58, 96); color: white; border-radius: 10px;">
+                                Supprimer</p>
+
                         </div>
                     </div>
                 </div>
@@ -65,16 +79,20 @@
                     <div class="bg-white" *ngIf="currentResponse.reply_id">
                         <div class="container-fluid bordure">
                             <strong>@ {{currentResponse.nom}}</strong>
-                            <p style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis; margin-bottom: 0px;">  
+                            <p
+                                style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis; margin-bottom: 0px;">
                                 {{currentResponse.message}}
                             </p>
                             <div (click)="close()" class="btn-close">x</div>
                         </div>
                     </div>
-                    <div class="form-group">    
-                        <textarea class="form-control" id="exampleTextarea" rows="4" [(ngModel)]="message" name="message"></textarea>
+                    <div class="form-group">
+                        <textarea class="form-control" id="exampleTextarea" rows="4" [(ngModel)]="message"
+                            name="message"></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary btn-sm" (click)="sendMessage()">envoyer</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="sendMessage()"
+                        *ngIf="!isLoad">envoyer</button>
+                    <button type="button" class="btn btn-primary btn-sm" *ngIf="isLoad">envoi...</button>
                 </form>
             </div>
         </div>

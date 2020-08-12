@@ -28,7 +28,9 @@
                                 </div>
                                 <div class="col-12">
                                     <button name="submit" type="submit" class="btn-color right-side"
-                                        (click)="loginUser(inscriptionForm)">Connexion</button>
+                                        (click)="loginUser(inscriptionForm)" *ngIf="!showLoarder">Connexion</button>
+                                        <button name="submit" type="submit" class="btn-color right-side"
+                                        *ngIf="showLoarder">Connexion...</button>
                                 </div>
                                 <!-- <div class="col-12"> <a title="Forgot Password" class="forgot-password mtb-20"
                                         href="#">Forgot your password?</a>

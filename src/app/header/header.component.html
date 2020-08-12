@@ -18,16 +18,22 @@
                 <div class="col-12 col-md-6 col-sm-7 p-0">
                     <div class="top-right-link right-side d-none d-sm-block">
                         <ul>
-                            <li class="info-link wishlist-icon content">
+                            <li class="info-link  content">
                                 <a href="https://www.facebook.com/osiser237" target="_blank" title="Wishlist">
                                     <span></span>
-                                    facebook</a>
+                                    <i class="fa fa-facebook"></i>facebook</a>
                             </li>
-                            <li class="info-link compare-icon">
+                            <li class="info-link">
                                 <a href="https://twitter.com/sos_cameroun" target="_blank" title="Compare">
                                     <span></span>
-                                    twitter</a>
+                                    <i class="fa fa-twitter"></i> twitter</a>
                             </li>
+                            <li class="info-link">
+                                <a href="https://www.instagram.com/sos_cameroun" target="_blank" title="Compare">
+                                    <span></span>
+                                    <i class="fa fa-instagram"></i> instagram</a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -50,8 +56,10 @@
                                 <div class="header_search_toggle desktop-view">
                                     <form>
                                         <div class="search-box">
-                                            <input class="input-text" type="text"  placeholder="Que cherchez vous ?..." #params>
-                                            <button class="search-btns" (click)="rechercherProduit(params.value)">Rechercher</button>
+                                            <input class="input-text" type="text" placeholder="Que cherchez vous ?..."
+                                                #params>
+                                            <button class="search-btns"
+                                                (click)="rechercherProduit(params.value)">Rechercher</button>
                                         </div>
                                     </form>
                                 </div>
@@ -60,7 +68,7 @@
                         <div class="col-md-2 col-8 right-call-part">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-6 col-sm-6" >
+                                    <div class="col-6 col-sm-6">
                                         <div class="header-right-part">
                                             <app-card-on-menu-box></app-card-on-menu-box>
                                         </div>
@@ -82,8 +90,7 @@
                                                     </ul>
                                                     <ul *ngIf="authUserData">
                                                         <li (click)="openprofil('userAccount')" class="login-icon"><a
-                                                                title="Login"><i
-                                                                    class="fa fa-user"></i>
+                                                                title="Login"><i class="fa fa-user"></i>
                                                                 {{authUserData.userName}}</a></li>
                                                         <li (click)="logout()" class="login-icon"
                                                             style="background-color:#f2f5f5; color: red;"><a
@@ -94,7 +101,8 @@
                                             </li>
                                             <li class="side-toggle">
                                                 <button data-target=".navbar-collapse" data-toggle="collapse"
-                                                    class="navbar-toggle" type="button"><i class="fa fa-bars"></i></button>
+                                                    class="navbar-toggle" type="button"><i
+                                                        class="fa fa-bars"></i></button>
                                             </li>
                                         </ul>
                                     </div>

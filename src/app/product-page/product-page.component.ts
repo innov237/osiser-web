@@ -24,19 +24,21 @@ export class ProductPageComponent implements OnInit {
   viewOption = 'description';
   comment: string;
   commantaire: any;
+  Commentisloard: boolean = true;
 
   constructor(private activatedRoute: ActivatedRoute, private route: Router, private dataService: DataService, private panierService: CartService, private httpService: HttpService, private router: Router) {
     this.produitData = this.dataService.getData();
-    if (this.produitData == null) {
-      this.router.navigateByUrl('/');
-    }
-    this.isloard = false;
-    this.setImage(this.toArray(this.produitData.image)[0]);
-    this.hqseUserData = JSON.parse(localStorage.getItem('hqseUserData'));
-    this.getComment();
 
+    this.isloard = false;
+    if (this.produitData != null) {
+      this.produitData = this.dataService.getData();
+      this.setImage(this.toArray(this.produitData.image)[0]);
+    }
+
+    this.hqseUserData = JSON.parse(localStorage.getItem('hqseUserData'));
     this.activatedRoute.params.subscribe(params => {
-      console.log(params['id']);
+      console.log(params);
+      this.getProduitBySlug(params['id']);
     });
   }
 
@@ -93,17 +95,19 @@ export class ProductPageComponent implements OnInit {
     this.currentImage = image;
     console.log(image);
   }
-  
-  openProductDetail(produit) {
-    this.dataService.setData(produit);
-    this.route.navigate(['/product-page', produit['slug']]);
-  }
+
+  // openProductDetail(produit) {
+  //   this.dataService.setData(produit);
+  //   this.route.navigate(['/product-page', produit['slug']]);
+  // }
 
   sendComment(produitData) {
     if (this.hqseUserData == null) {
       this.route.navigateByUrl('/login');
       return;
     }
+
+    this.Commentisloard = true;
 
     var postdata = {
       'produit_id': produitData.id,
@@ -114,9 +118,11 @@ export class ProductPageComponent implements OnInit {
       data => {
         if (data.success) {
           this.getComment();
+          this.Commentisloard = false;
         }
       }, err => {
         alert("erreur de connexion");
+        this.Commentisloard = false;
       }
     )
   }
@@ -145,9 +151,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   getProduitBySlug(slug) {
-    this.httpService.getOneData("getProduitBySlug", { "key": slug }).subscribe((result) => {
+    this.httpService.getOneData("api/stock/produitBySlug", slug).subscribe((result) => {
       this.produitData = result;
-      console.log(slug);
+      this.setImage(this.toArray(result.image)[0]);
+      this.getComment();
     });
   }
 }

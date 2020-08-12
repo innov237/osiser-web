@@ -362,8 +362,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a class="btn btn-color right-side"
-                                        (click)="saveAdresse(formadresse)">Enrégistrer</a>
+                                    <a class="btn btn-color right-side" (click)="saveAdresse(formadresse)"
+                                        *ngIf="!showLoarder">Enregistrer</a>
+                                    <a class="btn btn-color right-side" *ngIf="showLoarder">Enregistrement...</a>
                                 </div>
                             </div>
                         </form>
@@ -441,7 +442,8 @@
                             </div>
                             <div class="col-12">
                                 <button class="btn-color" type="submit" name="submit"
-                                    (click)="changepassword(formpassword)">Changer le mot de passe</button>
+                                    (click)="changepassword(formpassword)" *ngIf="!showLoarder">valider</button>
+                                <button class="btn-color" type="submit" name="submit" *ngIf="showLoarder">Enregistrement...</button>
                             </div>
                         </div>
                     </form>

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpService } from './../services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -11,8 +12,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class VideoComponent implements OnInit {
   currentVideoData: any;
   listeVideoData: any;
+  currentuser: any;
 
-  constructor(public httpservice: HttpService, public sanitizer: DomSanitizer) {
+  constructor(public httpservice: HttpService, public sanitizer: DomSanitizer, public router: Router) {
+    this.currentuser = JSON.parse(localStorage.getItem('hqseUserData'));
+    if (this.currentuser == null) {
+      alert("VOUS DEVEZ VOUS CONNECTER POUR ACCEDER A CETTE PAGE");
+      this.router.navigateByUrl('login');
+    }
   }
 
   ngOnInit() {

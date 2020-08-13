@@ -1,6 +1,6 @@
 <div class="container-video">
     <div class="row">
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-9 col-sm-12">
             <div class="fullvideo-container">
                 <iframe class="frame" [src]="setVideo(currentVideoData.link)" frameborder="0" width="100%" height="100%"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -11,7 +11,7 @@
                 <p style="margin-top: -10px;">{{currentVideoData.description}}</p>
             </div>
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-3 col-sm-12">
             <div class="rigth-sideBar" style="margin-top: 50px; height: 100vh; overflow: scroll; cursor: pointer;">
                 <div class="video-list" *ngFor="let video of listeVideoData" (click)="activeVideo(video)">
                     <div class="video-list-container">

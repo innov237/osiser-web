@@ -158,4 +158,5 @@ export class ForumPageComponent implements OnInit {
     }
 
   }
+  
 }

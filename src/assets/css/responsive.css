@@ -1563,6 +1563,9 @@ ul li.service-box {
 	
 }
 @media (max-width: 767px) {
+  .cart-box-main:hover {
+    overflow: hidden !important;
+  }
   .center-xs {
   	text-align: center;
   }

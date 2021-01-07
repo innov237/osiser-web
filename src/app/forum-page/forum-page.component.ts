@@ -111,6 +111,7 @@ export class ForumPageComponent implements OnInit {
   }
 
   getMessage() {
+    this.discussions = [];
     this.httpservice.getOneData('api/forum/list-discussion-sujet', this.currentDataSujet.id).subscribe(
       data => {
         this.discussions = data;

@@ -38,6 +38,8 @@ export class SidemenuComponent implements OnInit {
         this.router.navigateByUrl('shop');
       }
     }
+
+    console.log(categorieParent);
   }
 
   getProduitByCategorieend(categorieParent) {

@@ -21,6 +21,10 @@
                 <div class="product-listing grid-type">
                     <div class="inner-listing">
                         <div class="row mlr_-20">
+                            <div class="col-md-12" *ngIf="isLoad"
+                                style="text-align: center; margin-bottom: 100px; margin-top: 100px;">
+                                <img src="assets/images/loarder.gif" style="width: 100px;;" alt="" srcset="">
+                            </div>
                             <div class="col-md-3 col-6 plr-20 mb-xs-20" *ngFor="let produit of produitData"
                                 style="margin-bottom: 10px;">
                                 <div class="product-item">
@@ -29,7 +33,7 @@
                                             <div class="main-label new-label"><span>-{{produit.reduction}}%</span></div>
                                             <a>
                                                 <img src="{{api_url}}storage/{{toArray(produit.image)[0]}}"
-                                                    alt="Shopholic">
+                                                    alt="Shopholic" style="object-fit: cover;">
                                             </a>
                                         </div>
                                         <div class="product-item-details">

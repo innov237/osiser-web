@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
   loginUser(inscriptionForm) {
     this.showLoarder = true;
     this.submitAttempt = true;
+    this.errMessage = '';
 
     const crediantial = {
       'email': inscriptionForm.value.email,
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
         this.submitAttempt = false;
         this.errMessage = null;
         this.hqseUserData.user_id = result.user.id,
-        this.hqseUserData.token = result.access_token;
+          this.hqseUserData.token = result.access_token;
         this.hqseUserData.tokenType = result.token_type;
         this.hqseUserData.userName = result.user.nom;
         this.hqseUserData.userEmail = result.user.email;

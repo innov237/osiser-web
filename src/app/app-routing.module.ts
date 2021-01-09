@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'video', component: VideoComponent },
   { path: 'recherche', component: SearchResultComponent },
   { path: 'forum', component: ForumPageComponent },
-  { path: '', component: AcceuilComponent },
+  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '**', redirectTo: 'accueil', pathMatch: 'full' },
 ];
 

@@ -1,15 +1,15 @@
 .fullvideo-container {
-  width: 500px;
-  width: 1020px;
+  width: 100%;
+  height: 60vh;
   padding: 10px;
   border: 5px solid white;
   background-color: white;
   margin-top: 30px;
 }
+
 .container-video {
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-bottom: 80px;
+  margin-bottom: 10px;
+  padding: 20px;
 }
 
 .video-list-box,
@@ -21,14 +21,7 @@
   width: 250px;
   margin-left: 5px;
   h1 {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
-.video-list-container {
-  background-color: white;
-  margin-bottom: 20px;
-  width: 100%;
-  height: 105px;
-  padding: 2px;
-}

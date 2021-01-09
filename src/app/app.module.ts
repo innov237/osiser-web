@@ -2,7 +2,7 @@
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, Location, PathLocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -87,7 +87,7 @@ import { DiscussionComponent } from './discussion/discussion.component';
   ],
   providers: [
     SearchResultComponent,
-    Location, { provide: LocationStrategy, useClass:PathLocationStrategy,  }
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

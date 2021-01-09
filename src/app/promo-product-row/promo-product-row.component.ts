@@ -25,7 +25,7 @@ export class PromoProductRowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllProduct();
+    this.getAllPromo();
   }
 
 
@@ -52,8 +52,8 @@ export class PromoProductRowComponent implements OnInit {
     return JSON.parse(data);
   }
 
-  getAllProduct() {
-    this.httpService.getAllData('api/stock/listeProduit').subscribe(res => {
+  getAllPromo() {
+    this.httpService.getAllData('api/stock/getAllPromo').subscribe(res => {
       this.produitData = res;
       this.isloard = false;
     })

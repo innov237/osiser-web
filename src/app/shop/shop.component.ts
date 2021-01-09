@@ -19,6 +19,7 @@ export class ShopComponent implements OnInit {
   showSuccess: boolean = false;
   currentCategorie: any;
   hqseUserData: any;
+  isLoad: boolean = true;
 
   constructor(private route: Router, private dataService: DataService, private panierService: CartService, private httpService: HttpService) {
     this.currentCategorie = this.dataService.getData();
@@ -30,7 +31,7 @@ export class ShopComponent implements OnInit {
   ngOnInit() {
 
   }
-  
+
   openProductDetail(produit) {
     this.dataService.setData(produit);
     this.route.navigate(['/product-page', produit['slug']]);
@@ -55,6 +56,7 @@ export class ShopComponent implements OnInit {
   getProduitByCategorie(categorieId) {
     this.httpService.getOneData('api/stock/produitParCategorie', categorieId).subscribe(result => {
       this.produitData = result;
+      this.isLoad = false;
     })
   }
 

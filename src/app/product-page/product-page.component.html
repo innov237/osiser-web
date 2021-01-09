@@ -23,13 +23,15 @@
                     <div class="row m-0">
                         <div id="sidebar" class="col-md-5 mb-xs-30 p-0 pr-10 static-sidebar">
                             <div class="sidebar__inner">
-                                <div class="fotorama" data-nav="thumbs" data-allowfullscreen="native">
+                                <div class="fotorama" data-nav="thumbs" data-allowfullscreen="native"
+                                    *ngIf="currentImage!=null">
                                     <a>
-                                        <img src="{{api_url}}storage/{{currentImage}}" alt="" style="height: 400px;"
-                                            srcset="" *ngIf="currentImage!=null"></a>
+                                        <img src="{{api_url}}storage/{{currentImage}}" alt=""
+                                            style="height: 400px; width: 100%;" srcset="">
+                                    </a>
                                 </div>
                                 <div class="row" style="margin-top: 10px; cursor: pointer;">
-                                    <div class="col" *ngFor="let img of toArray(produitData.image)"
+                                    <div class="col" *ngFor="let img of toArray(produitData?.image)"
                                         (click)="setImage(img)">
                                         <img src="{{api_url}}storage/{{img}}" style="height: 130px; width: 130px;"
                                             alt="Shopholic">
@@ -45,9 +47,9 @@
                                         <div title="53%" class="rating-result"> <span style="width:53%"></span> </div>
                                     </div>
                                     <div class="price-box"> <span
-                                            class="price">{{produitData.prix_vente - (produitData.prix_vente*produitData.reduction)/100 }}
+                                            class="price">{{produitData?.prix_vente - (produitData?.prix_vente*produitData?.reduction)/100 }}
                                             FCFA</span>
-                                        <del class="price old-price">{{produitData.prix_vente}} FCFA</del>
+                                        <del class="price old-price">{{produitData?.prix_vente}} FCFA</del>
                                     </div>
                                     <div class="product-info-stock-sku">
                                         <div>
@@ -61,7 +63,7 @@
                                     </div>
                                     <hr class="mb-20">
 
-                                    <div [froalaView]="produitData.description"></div>
+                                    <div [froalaView]="produitData?.description"></div>
                                     <ul class="product-list">
                                         <li><i class="fa fa-check"></i> Satisfaction garantie à 100%</li>
                                         <li><i class="fa fa-check"></i> Livraison gratuite pour les commandes de plus de
@@ -132,7 +134,7 @@
                                                     <li *ngIf="viewOption == 'description'">
                                                         <div class="items-Description selected">
                                                             <div class="Description">
-                                                                <div [froalaView]="produitData.description"></div>
+                                                                <div [froalaView]="produitData?.description"></div>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -144,7 +146,7 @@
                                                     <li *ngIf="viewOption == 'commentaire'">
                                                         <div class="items-Reviews selected">
                                                             <div class="comments-area">
-                                                                <h4>commentaires<span>({{commantaire.length}})</span>
+                                                                <h4>commentaires<span>({{commantaire?.length}})</span>
                                                                 </h4>
                                                                 <ul class="comment-list mt-30">
                                                                     <li *ngFor="let comment of commantaire">
@@ -152,19 +154,19 @@
                                                                                 src="assets/images/comment-user.jpg"
                                                                                 alt="Shopholic"> </div>
                                                                         <div class="comment-detail">
-                                                                            <div class="user-name"> {{comment.nom}}
+                                                                            <div class="user-name"> {{comment?.nom}}
                                                                             </div>
                                                                             <div class="post-info">
                                                                                 <ul>
-                                                                                    <li>{{comment.date_comment | date:'dd-MM-yyyy'}}
+                                                                                    <li>{{comment?.date_comment | date:'dd-MM-yyyy'}}
                                                                                     </li>
                                                                                 </ul>
                                                                             </div>
-                                                                            <p class="mb-0"> {{comment.comment}} </p>
+                                                                            <p class="mb-0"> {{comment?.comment}} </p>
                                                                             <p *ngIf="hqseUserData.userType == 'administrateur'"
                                                                                 (click)="supprimerCommentaire(comment)"
                                                                                 style="cursor: pointer; display: inline-block; padding:2px 5px; font-size: 10px; background-color: rgb(236, 58, 96); color: white; border-radius: 10px;">
-                                                                                supprimez</p>
+                                                                                supprimer</p>
                                                                         </div>
                                                                     </li>
                                                                 </ul>
@@ -181,7 +183,11 @@
                                                                         <div class="col-12 plr-20">
                                                                             <button class="btn btn-color" name="submit"
                                                                                 type="button"
-                                                                                (click)="sendComment(produitData)">Envoyer</button>
+                                                                                (click)="sendComment(produitData)"
+                                                                                *ngIf="!Commentisloard">Envoyer</button>
+                                                                            <button class="btn btn-color" name="submit"
+                                                                                type="button"
+                                                                                *ngIf="Commentisloard">Envoi en cours...</button>
                                                                         </div>
                                                                     </div>
                                                                 </form>

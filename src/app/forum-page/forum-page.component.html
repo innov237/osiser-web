@@ -57,16 +57,21 @@
                     </div>
                     <div class="row" style="padding: 5px;">
                         <div class="col-md-3">
-                            le {{discussion.created_at | date:'dd-MM-yyyy hh:mm'}}
+                            le {{discussion.created_at | date:'dd/MM/yyyy hh:mm'}}
+                            <p *ngIf="currentuser.user_id != discussion.user_id && currentuser.userType=='administrateur'"
+                                (click)="bloquerAbonner(discussion.user_id)"
+                                style="cursor: pointer; color: red; text-decoration: underline;">
+                                bloquer cet utilisateur</p>
                         </div>
                         <div class="col-9" style="text-align: right;">
                             <p (click)="responseDiscussion(discussion)"
                                 style="cursor: pointer; display: inline-block; margin-left: 10px; padding: 5px; background-color: cadetblue; color: white; border-radius: 10px;">
                                 Repondre</p>
-                            <p *ngIf="currentuser.user_id == discussion.user_id || currentuser.userType == 'administrateur'"
+                            <p *ngIf="currentuser.user_id == discussion.user_id || currentuser.userType=='administrateur'"
                                 (click)="supprimerDiscussion(discussion)"
                                 style="cursor: pointer; display: inline-block; margin-left: 10px; padding: 5px; background-color: rgb(236, 58, 96); color: white; border-radius: 10px;">
-                                Supprimez</p>
+                                Supprimer</p>
+
                         </div>
                     </div>
                 </div>
@@ -85,7 +90,9 @@
                         <textarea class="form-control" id="exampleTextarea" rows="4" [(ngModel)]="message"
                             name="message"></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary btn-sm" (click)="sendMessage()">envoyer</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="sendMessage()"
+                        *ngIf="!isLoad">envoyer</button>
+                    <button type="button" class="btn btn-primary btn-sm" *ngIf="isLoad">envoi...</button>
                 </form>
             </div>
         </div>

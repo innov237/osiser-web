@@ -11,7 +11,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class VideoComponent implements OnInit {
   currentVideoData: any;
-  listeVideoData: any;
+  listeVideoData: any [];
   currentuser: any;
 
   constructor(public httpservice: HttpService, public sanitizer: DomSanitizer, public router: Router) {
@@ -32,8 +32,8 @@ export class VideoComponent implements OnInit {
 
   getAllVideo() {
     this.httpservice.getAllData('api/video/liste-video').subscribe((result) => {
-      this.listeVideoData = result;
-      this.currentVideoData = result[0];
+      this.listeVideoData = result.reverse();
+      this.currentVideoData = this.listeVideoData[0];
     })
   }
 

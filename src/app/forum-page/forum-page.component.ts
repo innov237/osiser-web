@@ -59,6 +59,7 @@ export class ForumPageComponent implements OnInit {
   }
 
   sendData(libelle, data) {
+    
     this.senddata = {
       'libelle': libelle,
       'data': data
@@ -70,6 +71,9 @@ export class ForumPageComponent implements OnInit {
     this.httpservice.getAllData('api/forum/liste-sujet-categorie').subscribe(
       (data: any) => {
         this.catergories = data;
+        console.log("liste des sujets de la categorie" )
+        console.log(this.catergories[0])
+        console.log("fin de liste des sujets" )
         this.sendData(this.catergories[0].libelle_categorie, this.catergories[0].sujets)
         this.isreload = false
       }

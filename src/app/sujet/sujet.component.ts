@@ -28,6 +28,7 @@ export class SujetComponent implements OnInit {
     public httpservice: HttpService) {
       this.currentuser = JSON.parse(localStorage.getItem('hqseUserData'));
       this.getTypeAbonnement();
+
     }
 
   ngOnInit(): void {
@@ -35,22 +36,24 @@ export class SujetComponent implements OnInit {
 
   chechAbonne(data) {
     for (let i = 0; i < data.length; i++) {
-      if (this.currentuser.user_id === data[i].user_id) {
-        this.isabonne = true;
+      if (this.currentuser.user_id === data[i].user_id ) {
+        return true;
+      }else{
+        return false;
       }
     }
-    return this.isabonne;
   }
 
   openSujet(data) {
     if (this.currentuser != null) {
       this.passabonnement = false;
       this.currentSujet = data;
-      if( this.currentuser.userType == "administrateur" && !this.isabonne){
+      console.log(this.chechAbonne(data.abonner));
+      if( this.currentuser.userType == "administrateur" && !this.chechAbonne(data.abonner)){
         this.creeAbonnement(this.typeCorrdonnateur);
       }else{
-        if (this.isabonne) {
-          this.validation.emit(this.isviewChat);
+        if (this.chechAbonne(data.abonner)) {
+          this.validation.emit(true);
           this.curentDataSujet.emit(this.currentSujet);
         } else {
           this.passabonnement = true;
@@ -86,7 +89,6 @@ export class SujetComponent implements OnInit {
         if (data.success) {
           this.passabonnement = false;
           this.message = data.message,
-          this.validationAbonne.emit(this.validat);
           setTimeout(() => {
             this.message = null;
             // if (this.currentuser.userType == "administrateur") {

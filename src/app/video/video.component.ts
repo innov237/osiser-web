@@ -13,6 +13,7 @@ export class VideoComponent implements OnInit {
   currentVideoData: any;
   listeVideoData: any [];
   currentuser: any;
+  message: string;
 
   constructor(public httpservice: HttpService, public sanitizer: DomSanitizer, public router: Router) {
     this.currentuser = JSON.parse(localStorage.getItem('hqseUserData'));

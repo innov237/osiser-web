@@ -10,6 +10,25 @@
                 <h1 style="font-size: 25px; ">{{currentVideoData.titre}}</h1>
                 <p style="margin-top: -10px;">{{currentVideoData.description}}</p>
             </div>
+            <div class="comment">
+                <div class="container-fluid mb-5">
+                    <div class="row">
+                        <div class="col-md-1 p-0">
+                            <img src="assets/images/comment-user.jpg" alt="" srcset="">
+                        </div>
+                        <div class="col-md-10">
+                            <h4 style="margin:0px">administrateur</h4>
+                            <p>video de tres bonne qualité </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="exampleTextarea" rows="4" [(ngModel)]="message"
+                        name="message"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" >envoyer</button>
+                <!-- <button type="button" class="btn btn-primary btn-sm" *ngIf="isLoad">envoi...</button> -->
+            </div>
         </div>
         <div class="col-md-3 col-sm-12">
             <div class="rigth-sideBar" style="margin-top: 50px; height: 100vh; overflow: scroll; cursor: pointer;">
